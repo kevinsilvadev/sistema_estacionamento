@@ -21,6 +21,7 @@ public class Clients implements Serializable {
     private String senha;
 
     @OneToOne
+    @JoinColumn(name = "id_ticket_id")
     private Ticket ticket;
 
 
