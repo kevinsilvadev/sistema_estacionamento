@@ -9,7 +9,7 @@
     <br/>
     <label for="senha">Senha</label>
     <br/>
-    <input type="text" name="senha"/>
+    <input type="password" name="senha"/>
   </form>
   <button id="b" onclick="window.location.href = 'http://localhost:8080/dashc' ">Entrar</button>
 </template>

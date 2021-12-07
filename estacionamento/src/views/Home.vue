@@ -2,14 +2,14 @@
   <Navbar/>
   <img id="fundo" alt="fundo" src="../assets/fundo.jpeg"/>
   <button onclick="window.location.href = 'http://localhost:8080/cadastro' " id="b1">Crie sua conta</button>
-  <h1 id="h1">O estacionamento do futuro</h1>
+  <h1 id="h1">O Estacionamento do futuro</h1>
 </template>
 
 <style scoped>
   #fundo{
     position: absolute;
     width: 1920px;
-    height: 839px;
+    height: 807px;
     top: 130px;
     right: 8px;
     left: 0px;
@@ -26,7 +26,7 @@
     font-weight: normal;
     font-size: 80px;
     line-height: 135px;
-    color: #22856D;
+    color: #1d745e;
   }
 
   #b1{

@@ -1,72 +1,120 @@
 <template>
-    <form id="reserva">
-      <h1 id="treserva">Faça sua reserva</h1>
+  <form id="reserva" @submit="salvar">
+    <h1 id="treserva">Faça sua reserva</h1>
 
-      <label for="hora">Horário</label>
-      <br/>
-      <input name="hora" class="i1" type="time"/>
+    <label for="hora">Horário</label>
+    <br />
+    <input name="hora" class="i1" type="time" v-model="ticket.horario" />
 
-      <br/>
-      <br/>
-      
-      <label for="placa">Placa</label>
-      <br/>
-      <input class="i1" name="placa"/>
+    <br />
+    <br />
 
-      <br/>
-      <br/>
+    <label for="placa">Placa</label>
+    <br />
+    <input class="i1" name="placa" v-model="ticket.placa_automovel" />
 
-      <label for="drywash">Drywash</label>
-      <input name="drywash" type="checkbox"/>
+    <br />
+    <br />
 
-      <br/>
-      <br/>
+    <label for="drywash">Drywash</label>
+    <input name="drywash" type="checkbox" />
 
-      <button id="breserva">Reservar</button>
-    </form>
-    <Ticket placa="ABC-1234" data="5/12/2021 - 11:00" cod="1" id="i"/>
+    <button type="submit" id="b1">Reservar</button>
+    <br />
+    <br />
+  </form>
+
+  <Ticket placa="ABC-1234" data="5/12/2021 - 11:00" cod="1" id="i" />
 </template>
 
 <script>
-import Ticket from '@/components/Ticket.vue'
-
-export default{
-  components:{
+import Ticket from "@/components/Ticket.vue";
+import ticketSalvar from "../services/ticket";
+export default {
+  components: {
     Ticket,
+  },
+
+  data() {
+    return {
+      ticket: {
+        placa_automovel: "",
+        horario: "",
+      },
+
+      tickets: [],
+    };
+  },
+
+  mounted() {
+    ticketSalvar.listar().then((response) => {
+      console.log(response.data);
+    });
+  },
+
+  methods: {
+    checkForm: function (e) {
+      if (this.horario && this.placa_automovel) {
+        this.salvar();
+        return true;
+      }
+
+      this.errors = [];
+
+      if (!this.horario) {
+        this.errors.push("O horario é obrigatório.");
+      }
+      if (!this.placa_automovel) {
+        this.errors.push("A placa é obrigatória.");
+      }
+
+      e.preventDefault();
+    },
+    
+    salvar() {
+      ticketSalvar.salvar(this.ticket).then((response) => {
+        alert(`Ticket emitido!
+
+        Codigo: ${this.tickets.id_ticket}
+        Placa: ${this.ticket.placa_automovel}
+        Horário: ${this.ticket.horario}
+
+      `);
+        this.cliente = response.data;
+      });
+    },
   },
 };
 </script>
 
 
 <style scoped>
-label{
-  font-size:30px;
+label {
+  font-size: 30px;
 }
-#i{
-  position:absolute;
+#i {
+  position: absolute;
   left: 1200px;
-  top:280px;
+  top: 280px;
 }
-#reserva{
-  text-align:center;
+#reserva {
+  text-align: center;
   position: absolute;
   top: 300px;
   left: 350px;
 }
 
-#breserva{
+#breserva {
   width: 100px;
   height: 30px;
   font-family: Sans-serif;
   font-size: 20px;
   color: white;
 
-  background-color: #22856D;
+  background-color: #22856d;
   border-radius: 5px;
-  
 }
-#treserva{
-
+#treserva {
   width: 350px;
   height: 70px;
 
@@ -75,10 +123,10 @@ label{
   line-height: 61px;
   text-align: center;
   color: white;
-  background: #22856D;
+  background: #22856d;
   border-radius: 50px 50px 50px 50px;
 }
-.i1{
+.i1 {
   width: 200px;
   height: 43px;
   left: 766px;

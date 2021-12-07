@@ -1,3 +1,4 @@
+
 <template>
    <div id="conta" >
       <h1>Olá, {{ text }}</h1>
