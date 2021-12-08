@@ -5,6 +5,7 @@
         <router-link class="menu" to="/patrocinios">Patrocinadores</router-link>
         <router-link class="menu" to="/login">Login</router-link>
         <router-link class="menu" to="/contato">Contato</router-link>
+        <router-link class="menu" to="/pagar">Pagar</router-link>
     </div>
 </template>
 
@@ -12,9 +13,9 @@
 #nav {
   padding: 30px;
   position: absolute;
-  width: 700px;
+  width: 800px;
   height: 20px;
-  left: 1100px;
+  left: 1000px;
   top: 42px;
   font-size: 25px;
   font-family : Sans-serif;

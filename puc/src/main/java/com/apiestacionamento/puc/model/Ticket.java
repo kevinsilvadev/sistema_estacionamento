@@ -19,14 +19,13 @@ public class Ticket implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_ticket;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy'T'HH:mm:ss'Z'", timezone = "Brasil/Brazilian")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT-3")
     private Instant hora_entrada;
 
     @OneToOne
     private Pagamentos id_pagamento;
 
-    @OneToOne
-    private Totem id_totem;
+
 
     private String placa_automovel;
 
@@ -56,14 +55,6 @@ public class Ticket implements Serializable {
 
     public void setId_pagamento(Pagamentos id_pagamento) {
         this.id_pagamento = id_pagamento;
-    }
-
-    public Totem getId_totem() {
-        return id_totem;
-    }
-
-    public void setId_totem(Totem id_totem) {
-        this.id_totem = id_totem;
     }
 
     public String getPlaca_automovel() {

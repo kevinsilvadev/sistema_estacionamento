@@ -8,5 +8,9 @@ export default {
     salvar: (ticket) => {
         return api.post("tickets", ticket)
 
+    },
+
+    findByid: (ticket) => {
+        return api.get(`tickets/${ticket}`)
     }
 }

@@ -7,10 +7,7 @@ import com.apiestacionamento.puc.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -28,6 +25,12 @@ public class TicketController {
     public ResponseEntity<List<Ticket>> findAll() {
         List<Ticket> list  = ticketService.findAll();
         return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Ticket> findById(@PathVariable Long id){
+        Ticket obj = ticketService.findById(id);
+        return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping

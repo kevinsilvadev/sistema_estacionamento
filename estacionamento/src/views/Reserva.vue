@@ -1,16 +1,12 @@
 <template>
   <form id="reserva" @submit="salvar">
     <h1 id="treserva">Faça sua reserva</h1>
-
-    <label for="hora">Horário</label>
-    <br />
-    <input name="hora" class="i1" type="time" v-model="ticket.horario" />
-
     <br />
     <br />
 
     <label for="placa">Placa</label>
     <br />
+    <br>
     <input class="i1" name="placa" v-model="ticket.placa_automovel" />
 
     <br />
@@ -18,8 +14,10 @@
 
     <label for="drywash">Drywash</label>
     <input name="drywash" type="checkbox" />
-
-    <button type="submit" id="b1">Reservar</button>
+    <br>
+    <br>
+    <br>
+    <button id="breserva"  onclick="window.location.href = 'http://localhost:8080/pagamento'" type="submit">Reservar</button>
     <br />
     <br />
   </form>
@@ -53,33 +51,9 @@ export default {
   },
 
   methods: {
-    checkForm: function (e) {
-      if (this.horario && this.placa_automovel) {
-        this.salvar();
-        return true;
-      }
-
-      this.errors = [];
-
-      if (!this.horario) {
-        this.errors.push("O horario é obrigatório.");
-      }
-      if (!this.placa_automovel) {
-        this.errors.push("A placa é obrigatória.");
-      }
-
-      e.preventDefault();
-    },
-    
     salvar() {
       ticketSalvar.salvar(this.ticket).then((response) => {
-        alert(`Ticket emitido!
-
-        Codigo: ${this.tickets.id_ticket}
-        Placa: ${this.ticket.placa_automovel}
-        Horário: ${this.ticket.horario}
-
-      `);
+        alert(`Ticket emitido! `);
         this.cliente = response.data;
       });
     },

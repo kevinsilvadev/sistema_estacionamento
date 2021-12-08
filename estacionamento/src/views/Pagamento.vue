@@ -1,63 +1,87 @@
-<script >
-import Pagamento from "../services/pagamento";
+<template>
+  <div id="taxa">
+    <h1 id="htaxa" class="titulo">Taxa da Reserva</h1>
+    <br />
+    <h2>R$ 10,00</h2>
+  </div>
 
+  <form id="forma" @submit.prevent="salvar">
+    <h1 class="titulo">Pagamento</h1>
+    <div id="pix">
+      <img class="img" src="../assets/pix.png" />
+      <br />
+      <label for="pix">Pix</label>
+      <input name="pix" type="checkbox" value="Pix" />
+    </div>
+
+    <div id="card">
+      <img class="img" src="../assets/card.png" />
+      <br />
+      <label for="card">Cartão</label>
+      <input name="card" type="checkbox"  v-model="pagamento.modo" />
+    </div>
+    <br />
+    <br />
+    <button id="bpagar" type="submit">Pagar</button>
+  </form>
+</template>
+
+<script>
+import Pagamentos from "../services/pagamento";
 export default {
   data() {
     return {
-      pagamento:[]
+      pagamento: {
+       modo: ""
+      },
+      pagamentos: [],
     };
   },
 
   mounted() {
-    Pagamento.listar().then((response) => {
+    Pagamentos.listar().then((response) => {
       console.log(response.data);
-      this.pagamento = response.data
     });
+  },
+
+  methods: {
+    salvar() {
+      Pagamentos.salvar(this.pagamento).then((response) => {
+        this.pagamento = response.data;
+        alert(`Sua reserva foi paga, muito obrigado! Volte sempre`);
+      });
+    },
   },
 };
 </script>
 
-<template>
-  <div id="tempo">
-    <h1 id="htempo" class="titulo">Tempo da estadia</h1>
-    <img id="clock" class="img" src="../assets/clock.png" />
-    <h2>{{ pagamento.hora_data}}</h2>
-  </div>
-
-  <div id="valor">
-    <h1 class="titulo">Valor da estadia</h1>
-    <h2>{{pagamento.valor }}</h2>
-  </div>
-
-  <div id="forma">
-    <h1 class="titulo">Pagamento</h1>
-    <img class="img" src="../assets/card.png" />
-    <img class="img" src="../assets/pix.png" />
-  </div>
-</template>
-
 <style scoped>
-#tempo {
+h2 {
+  font-size: 70px;
+}
+#bpagar {
+  width: 150px;
+  height: 50px;
+  font-family: Sans-serif;
+  font-size: 30px;
+  color: white;
+
+  background-color: #22856d;
+  border-radius: 5px;
+}
+#taxa {
+  text-align: center;
   position: absolute;
   font-size: 20px;
-  left: 100px;
+  left: 200px;
   top: 200px;
 }
-#htempo {
-  font-size: 40px;
-}
-#clock {
-  position: absolute;
-  left: 80px;
+label {
+  font-size: 30px;
 }
 
-#valor {
-  position: absolute;
-  top: 200px;
-  left: 700px;
-  text-align: center;
-  width: 500px;
-  height: 150px;
+#htaxa {
+  font-size: 45px;
 }
 
 .titulo {
@@ -76,6 +100,7 @@ export default {
   position: absolute;
   top: 200px;
   left: 1300px;
+  text-align: center;
 }
 .img {
   width: 200px;

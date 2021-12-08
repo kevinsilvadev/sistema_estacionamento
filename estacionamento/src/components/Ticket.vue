@@ -1,11 +1,12 @@
 <template>
   <div id="ticket">
     <h1 id="nome">Ticket</h1>
-    <ul id="example-1" v-for="ticket in tickets" :key="ticket.id_ticket">
-      <li>Codigo: {{ ticket.id_ticket }}</li>
-      <li>Placa: {{ ticket.placa_automovel }}</li>
-      <li>Horário: {{ ticket.hora_entrada }}</li>
-    </ul>
+    <div id="conteudo" v-for="ticket in tickets" :key="ticket.id_ticket">
+      <p>{{ ticket.placa_automovel }}</p>
+      <p>{{ ticket.hora_entrada }}</p>
+      <p>{{ ticket.id_ticket }}</p>
+      <p>Obrigado pela<br />preferência</p>
+    </div>
   </div>
 </template>
 
@@ -31,12 +32,7 @@ export default {
     };
   },
 
-  methods: {
-    modalContent(index) {
-      const title = this.tickets[index].id_ticket;
-      console.log(title);
-    },
-  },
+  methods: {},
 };
 </script>
 
