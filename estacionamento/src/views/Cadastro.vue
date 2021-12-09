@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <form id="cadastro" @submit.prevent="salvar">
+  <form id="cadastro" @submit.prevent="salvar" v-on="checkForm">
     <h1>Cadastrar-se</h1>
 
     <label for="nome">Nome</label>
@@ -30,8 +30,11 @@
     <br>
     <br>
     <br>
-    <button id="b" type="submit" onclick="window.location.href = 'http://localhost:8080/pagamento' ">Cadastrar</button>
+    <button id="b" type="submit">Cadastrar</button>
   </form>
+  <ul>
+    <li v-for="error in erros" :key="error.id">{{error}}</li>
+  </ul>
 </template>
 
 <script>
@@ -51,6 +54,7 @@ export default {
         cpf: "",
         email: "",
         senha: "",
+        errors: []
       },
       clientes: [],
     };
@@ -69,6 +73,26 @@ export default {
         this.cliente = response.data;
       });
     },
+
+    checkForm: function () {
+        if(!this.cliente.nome) {
+          this.cliente.errors('O nome deve ser preenchido')
+        }
+
+        if(!this.cliente.cpf) {
+          this.errors.push('Email deve ser preenchido')
+        }
+
+        
+        if(!this.cliente.email == null) {
+          this.errors.push('Email deve ser preenchido')
+        }
+
+        
+        if(!this.cliente.senha == null) {
+          this.errors.push('Email deve ser preenchido')
+        }
+    }
   },
 };
 </script>

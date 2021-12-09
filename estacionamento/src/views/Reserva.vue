@@ -1,12 +1,12 @@
 <template>
-  <form id="reserva" @submit="salvar">
+  <form id="reserva" @submit.prevent="salvar">
     <h1 id="treserva">Faça sua reserva</h1>
     <br />
     <br />
 
     <label for="placa">Placa</label>
     <br />
-    <br>
+    <br />
     <input class="i1" name="placa" v-model="ticket.placa_automovel" />
 
     <br />
@@ -14,23 +14,27 @@
 
     <label for="drywash">Drywash</label>
     <input name="drywash" type="checkbox" />
-    <br>
-    <br>
-    <br>
-    <button id="breserva"  onclick="window.location.href = 'http://localhost:8080/pagamento'" type="submit">Reservar</button>
+    <br />
+    <br />
+    <br />
+    <button
+      id="breserva"
+      onclick="window.location.href = 'http://localhost:8080/pagamento'"
+      type="submit"
+    >
+      Reservar
+    </button>
     <br />
     <br />
   </form>
 
-  <Ticket placa="ABC-1234" data="5/12/2021 - 11:00" cod="1" id="i" />
 </template>
 
 <script>
-import Ticket from "@/components/Ticket.vue";
 import ticketSalvar from "../services/ticket";
 export default {
   components: {
-    Ticket,
+ 
   },
 
   data() {
@@ -53,8 +57,9 @@ export default {
   methods: {
     salvar() {
       ticketSalvar.salvar(this.ticket).then((response) => {
-        alert(`Ticket emitido! `);
         this.cliente = response.data;
+        alert(`Ticket emitido! `);
+
       });
     },
   },
@@ -75,7 +80,7 @@ label {
   text-align: center;
   position: absolute;
   top: 300px;
-  left: 350px;
+  left: 750px;
 }
 
 #breserva {

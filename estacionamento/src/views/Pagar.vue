@@ -14,7 +14,6 @@
         <button id="b" type="submit">Buscar</button>
       </div>
     </div>
-    <Ticket placa="" data="" cod="1" id="ticket" />
   </form>
 
   <form id="forma" @submit="salvarPagamento">
@@ -41,18 +40,26 @@
     <br />
     <button id="b" type="submit">Pagar</button>
   </form>
+
+  <div id="ticket">
+    <h1 id="nome">Ticket</h1>
+    <div id="conteudo" v-if="ticket">
+      <p>{{ ticket.placa_automovel }}</p>
+      <p>{{ ticket.hora_entrada }}</p>
+      <p>{{ ticket.id_ticket }}</p>
+      <p>$20</p>
+    </div>
+  </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
 import ticket from "../services/ticket";
-import Ticket from "@/components/Ticket";
 import pagamentos from "../services/pagamento";
 
 export default {
   components: {
     Navbar,
-    Ticket,
   },
 
   data() {
@@ -162,5 +169,28 @@ label {
   position: absolute;
   left: 750px;
   top: 200px;
+}
+
+#nome {
+  width: 350px;
+  height: 70px;
+
+  font-family: Sans-serif;
+  font-size: 35px;
+  line-height: 61px;
+  text-align: center;
+  color: white;
+  background: #22856d;
+  border-radius: 50px 50px 50px 50px;
+}
+#conteudo {
+  position: absolute;
+  left: 40px;
+  background-color: white;
+  border-radius: 20px;
+
+  text-align: center;
+  font-size: 30px;
+  width: 250px;
 }
 </style>

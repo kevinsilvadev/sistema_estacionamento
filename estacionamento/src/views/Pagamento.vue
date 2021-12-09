@@ -18,21 +18,33 @@
       <img class="img" src="../assets/card.png" />
       <br />
       <label for="card">Cartão</label>
-      <input name="card" type="checkbox"  v-model="pagamento.modo" />
+      <input name="card" type="checkbox" v-model="pagamento.modo" />
     </div>
     <br />
     <br />
     <button id="bpagar" type="submit">Pagar</button>
   </form>
+  <Ticket placa="ABC-1234" data="5/12/2021 - 11:00" cod="1" id="i" />
+
 </template>
 
+
+
 <script>
+
+import Ticket from "@/components/Ticket.vue"
+
 import Pagamentos from "../services/pagamento";
 export default {
+
+  components: {
+    Ticket,
+  },
+
   data() {
     return {
       pagamento: {
-       modo: ""
+        modo: "",
       },
       pagamentos: [],
     };
@@ -104,5 +116,11 @@ label {
 }
 .img {
   width: 200px;
+}
+
+#i {
+  position: absolute;
+  left: 750px;
+  top: 210px;
 }
 </style>

@@ -8,5 +8,9 @@ export default {
     salvar: (clientes) => {
         return api.post("clientes", clientes)
 
+    },
+    
+    login: (cliente) => {
+        return api.post("clientes", cliente)
     }
 }

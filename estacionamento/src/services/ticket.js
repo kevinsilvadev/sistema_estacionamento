@@ -10,6 +10,7 @@ export default {
 
     },
 
+
     findByid: (ticket) => {
         return api.get(`tickets/${ticket}`)
     }

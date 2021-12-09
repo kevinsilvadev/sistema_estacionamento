@@ -120,7 +120,7 @@ export default{
 
 <template>
   <div id="conta">
-    <h1>Olá, </h1>
+    <h1>Olá, Kevin </h1>
     <img src="../assets/person.png" id="img" />
   </div>
   <button
